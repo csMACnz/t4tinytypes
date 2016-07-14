@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>csmacnz.t4tinytypes</id>
+    <version>1.0.0</version>
+    <authors>Mark Clearwater</authors>
+    <description>Tiny Type generation using t4 templates.</description>
+    <projectUrl>https://github.com/csMACnz/t4tinytypes</projectUrl>
+    <licenseUrl>https://csmacnz.mit-license.org/</licenseUrl>
+    <developmentDependency>true</developmentDependency>
+  </metadata>
+  <files>
+    <file src="*.ttinclude" target="tools" />
+  </files>
+</package>

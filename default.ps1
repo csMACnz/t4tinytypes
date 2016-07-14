@@ -11,7 +11,9 @@ task gitversion {
     $gitversion = Resolve-Path "BuildTools/GitVersion.*/tools/gitversion.exe"
     $str = & $gitversion | out-string
     $json = ConvertFrom-Json $str
-    $script:nuget_version = $json.NuGetVersionV2
+
+    #I might have to change this, but I basically want major.minor.patch.commitcount
+    $script:nuget_version = "$($json.MajorMinorPatch).$($json.CommitsSinceVersionSource)"
     Write-Host "Version: $nuget_version"
 }
 

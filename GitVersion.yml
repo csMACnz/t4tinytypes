@@ -1,0 +1,11 @@
+mode: ContinuousDeployment
+#next-version: 1.0.0
+branches:
+  master:
+    mode: ContinuousDeployment
+    tag: ''
+    increment: Minor
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+ignore:
+  sha: []

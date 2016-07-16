@@ -17,7 +17,17 @@ task gitversion {
     Write-Host "Version: $nuget_version"
 }
 
-task test {
+task test -depends dotnettest, vstest
+
+task dotnettest {
+    cd test/dotnetcli
+    dotnet restore
+    cd t4tinytypes.sample.tests
+    dotnet build
+    dotnet test
+}
+
+task vstest {
 #TODO
 }
 

@@ -23,7 +23,6 @@ task dotnettest {
     cd test/dotnetcli
     dotnet restore
     cd t4tinytypes.sample.tests
-    dotnet build
     dotnet test
 }
 

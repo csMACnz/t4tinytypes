@@ -4,8 +4,8 @@
 using(var scope = CreateScope())
 {
     scope.Generate(NewValueType("TinyString", String));
-    scope.Generate(NewValueType("Distance1", Int));
-    scope.Generate(NewValueType("Distance2", Double));
-    scope.Generate(NewValueType("Currency", Decimal));
+    scope.Generate(NewValueType("TinyInt", Int));
+    scope.Generate(NewValueType("TinyDouble", Double));
+    scope.Generate(NewValueType("TinyDecimal", Decimal));
 }
 #>

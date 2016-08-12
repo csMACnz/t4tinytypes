@@ -6,19 +6,19 @@ namespace Tests
     public class Tests
     {
         [Fact]
-        public void CurrencyExists() 
+        public void TinyDecimalExists() 
         {
-            var currency = new t4tinytypes.sample.Currency();
+            var currency = new t4tinytypes.sample.TinyDecimal();
         }
         [Fact]
-        public void Distance1Exists() 
+        public void TinyInt() 
         {
-            var dist1 = new t4tinytypes.sample.Distance1();
+            var dist1 = new t4tinytypes.sample.TinyInt();
         }
         [Fact]
-        public void Distance2Exists() 
+        public void TinyDouble() 
         {
-            var dist2 = new t4tinytypes.sample.Distance2();
+            var dist2 = new t4tinytypes.sample.TinyDouble();
         }
     }
 }

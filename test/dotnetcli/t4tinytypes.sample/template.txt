@@ -3,3 +3,5 @@
 * TinyInt
 * TinyDouble
 * TinyDecimal
+* TinyChar
+* TinyBool

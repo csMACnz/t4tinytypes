@@ -7,5 +7,7 @@ using(var scope = CreateScope())
     scope.Generate(NewValueType("TinyInt", Int));
     scope.Generate(NewValueType("TinyDouble", Double));
     scope.Generate(NewValueType("TinyDecimal", Decimal));
+    scope.Generate(NewValueType("TinyChar", Char));
+    scope.Generate(NewValueType("TinyBool", Bool));
 }
 #>

@@ -7,15 +7,15 @@ namespace Tests
         [Fact]
         public void TinyDecimalExists() 
         {
-            var TinyDecimal = new t4tinytypes.sample.TinyDecimal();
-            Assert.NotNull(TinyDecimal);
+            var tinyDecimal = new t4tinytypes.sample.TinyDecimal();
+            Assert.NotNull(tinyDecimal);
         }
 
         [Fact]
         public void TinyDecimalToStringMatches()
         {
-            var TinyDecimal = new t4tinytypes.sample.TinyDecimal(1.234m);
-            Assert.Equal(1.234m.ToString(), TinyDecimal.ToString());
+            var tinyDecimal = new t4tinytypes.sample.TinyDecimal(1.234m);
+            Assert.Equal(1.234m.ToString(), tinyDecimal.ToString());
         }
 
         

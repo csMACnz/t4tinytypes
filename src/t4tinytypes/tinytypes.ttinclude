@@ -166,6 +166,7 @@ else
  definition.TypeName != "float" &&
  definition.TypeName != "double" &&
  definition.TypeName != "decimal" &&
+ definition.TypeName != "bool" &&
  definition.TypeName != "char") {#>
             if(_value == null) return null;
 <#+}#>
@@ -216,6 +217,7 @@ else
     public string Float = "float";
     public string Decimal = "decimal";
     public string Bool = "bool";
+    public string Char = "char";
     
     public string ResolveNamespace()
     {

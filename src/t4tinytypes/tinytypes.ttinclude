@@ -158,6 +158,12 @@ else
         }
 
 <#+ } #>    
+
+       public override string ToString()
+       {
+           if(_value == null) return null;
+           return _value.ToString();
+       }
     }
 }<#+
 
@@ -196,6 +202,7 @@ else
         };
     }
 
+    public string String = "string";
     public string Int = "int";
     public string Long = "long";
     public string Double = "double";

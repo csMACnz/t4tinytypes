@@ -1,4 +1,5 @@
 ﻿Value Types Generated:
+* TinyString
 * Distance1
 * Distance2
 * Currency

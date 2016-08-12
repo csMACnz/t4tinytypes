@@ -47,7 +47,7 @@ public class Scope : IDisposable
         var myNamespace = ResolveNamespace();
 
         //Could be customisable in the future
-        var debugDisplay = definition.Name + " {_value}m";
+        var debugDisplay = definition.Name + " {_value}";
 
         IEnumerable<string> interfaces = Enumerable.Empty<string>();
 

@@ -2,7 +2,8 @@
   "name": "t4tinytypes.sample",
   "version": "1.0.0-*",
   "buildOptions": {
-    "debugType": "portable"
+    "debugType": "portable",
+    "warningsAsErrors": true
   },
   "dependencies": {},
   "frameworks": {

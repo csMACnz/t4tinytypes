@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 
 namespace Tests
 {
@@ -8,17 +7,17 @@ namespace Tests
         [Fact]
         public void TinyDecimalExists() 
         {
-            var currency = new t4tinytypes.sample.TinyDecimal();
+            var tinyDecimal = new t4tinytypes.sample.TinyDecimal();
+
+            Assert.NotNull(tinyDecimal);
         }
-        [Fact]
-        public void TinyInt() 
-        {
-            var dist1 = new t4tinytypes.sample.TinyInt();
-        }
+
         [Fact]
         public void TinyDouble() 
         {
-            var dist2 = new t4tinytypes.sample.TinyDouble();
+            var tinyDouble = new t4tinytypes.sample.TinyDouble();
+
+            Assert.NotNull(tinyDouble);
         }
     }
 }

@@ -159,11 +159,18 @@ else
 
 <#+ } #>    
 
-       public override string ToString()
-       {
-           if(_value == null) return null;
-           return _value.ToString();
-       }
+        public override string ToString()
+        {
+<#+if(definition.TypeName != "int" &&
+ definition.TypeName != "long" &&
+ definition.TypeName != "float" &&
+ definition.TypeName != "double" &&
+ definition.TypeName != "decimal" &&
+ definition.TypeName != "char") {#>
+            if(_value == null) return null;
+<#+}#>
+            return _value.ToString();
+        }
     }
 }<#+
 

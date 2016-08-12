@@ -1,0 +1,77 @@
+<#@ assembly name="EnvDTE"
+#><#@ import namespace="Microsoft.VisualStudio.TextTemplating"
+#><#@ include file="valuetypegeneration.ttinclude" 
+#><#+
+
+public Scope CreateVSScope()
+{ 
+    ITextTemplatingEngineHost host = this.Host;
+    StringBuilder template = GenerationEnvironment;
+    
+    var manager = (host is IServiceProvider) ? new VSManager(host, template) : new Manager(host, template);
+
+    return new Scope(manager, Generate, Finalize);
+}
+
+public class VSManager: Manager {
+    private EnvDTE.ProjectItem templateProjectItem;
+    private EnvDTE.DTE dte;
+    private Action<String> checkOutAction;
+    private Action<IEnumerable<String>> projectSyncAction;
+
+    public override void Process(bool split) {
+        if (templateProjectItem.ProjectItems == null)
+            return;
+        base.Process(split);
+        projectSyncAction.EndInvoke(projectSyncAction.BeginInvoke(generatedFileNames, null, null));
+    }
+
+    protected override void CreateFile(String fileName, String content) {
+        if (IsFileContentDifferent(fileName, content)) {
+            CheckoutFileIfRequired(fileName);
+            File.WriteAllText(fileName, content);
+        }
+    }
+
+    internal VSManager(ITextTemplatingEngineHost host, StringBuilder template)
+        : base(host, template) {
+        var hostServiceProvider = (IServiceProvider) host;
+        if (hostServiceProvider == null)
+            throw new ArgumentNullException("Could not obtain IServiceProvider");
+        dte = (EnvDTE.DTE) hostServiceProvider.GetService(typeof(EnvDTE.DTE));
+        if (dte == null)
+            throw new ArgumentNullException("Could not obtain DTE from host");
+        templateProjectItem = dte.Solution.FindProjectItem(host.TemplateFile);
+        checkOutAction = (String fileName) => dte.SourceControl.CheckOutItem(fileName);
+        projectSyncAction = (IEnumerable<String> keepFileNames) => ProjectSync(templateProjectItem, keepFileNames);
+    }
+
+    private static void ProjectSync(EnvDTE.ProjectItem templateProjectItem, IEnumerable<String> keepFileNames) {
+        var keepFileNameSet = new HashSet<String>(keepFileNames);
+        var projectFiles = new Dictionary<String, EnvDTE.ProjectItem>();
+        var originalFilePrefix = Path.GetFileNameWithoutExtension(templateProjectItem.get_FileNames(0)) + ".";
+        foreach(EnvDTE.ProjectItem projectItem in templateProjectItem.ProjectItems)
+            projectFiles.Add(projectItem.get_FileNames(0), projectItem);
+
+        // Remove unused items from the project
+        foreach(var pair in projectFiles)
+            if (!keepFileNames.Contains(pair.Key) && !(Path.GetFileNameWithoutExtension(pair.Key) + ".").StartsWith(originalFilePrefix))
+                pair.Value.Delete();
+
+        // Add missing files to the project
+        foreach(String fileName in keepFileNameSet)
+            if (!projectFiles.ContainsKey(fileName))
+                templateProjectItem.ProjectItems.AddFromFile(fileName);
+    }
+
+    private void CheckoutFileIfRequired(String fileName) {
+        var sc = dte.SourceControl;
+        if (sc != null && sc.IsItemUnderSCC(fileName) && !sc.IsItemCheckedOut(fileName))
+            checkOutAction.EndInvoke(checkOutAction.BeginInvoke(fileName, null, null));
+    }
+}
+
+/* IMPORTANT: Do not add blanks after this last tag as it would break the T4 generation
+ * See http://stackoverflow.com/questions/11379471/error-a-template-containing-a-class-feature-must-end-with-a-class-feature
+ */
+#>

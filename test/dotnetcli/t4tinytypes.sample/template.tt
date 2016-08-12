@@ -1,4 +1,10 @@
 <#@ template language="C#" debug="true" hostspecific="true"
-#><#@ output extension="txt"
+#><#@ include file="../../../src/t4tinytypes/tinytypes.ttinclude"
+#><#
+using(var scope = CreateScope())
+{
+	scope.Generate(NewValueType("Distance1", Int));
+	scope.Generate(NewValueType("Distance2", Double));
+	scope.Generate(NewValueType("Currency", Decimal));
+}
 #>
-Hello World

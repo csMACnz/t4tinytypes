@@ -1,1 +1,4 @@
-﻿Hello World
+﻿Value Types Generated:
+* Distance1
+* Distance2
+* Currency

@@ -22,8 +22,15 @@ task test -depends dotnettest, vstest
 task dotnettest {
     cd test/dotnetcli
     dotnet restore
-    cd t4tinytypes.sample.tests
-    dotnet test
+
+    # run first because bug: https://github.com/dotnet/cli/issues/3807
+    {
+        cd t4tinytypes.sample
+        ./generateCode.cmd
+    }
+    dotnet build t4tinytypes.sample
+
+    dotnet test t4tinytypes.sample.tests
 }
 
 task vstest {

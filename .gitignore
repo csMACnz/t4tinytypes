@@ -254,3 +254,6 @@ paket-files/
 
 pack/
 BuildTools/
+
+#Excluding to ensure generation is working - not recommended probably
+*.g.cs

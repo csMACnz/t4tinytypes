@@ -48,3 +48,8 @@ task pack -depends gitversion {
     nuget pack -OutputDirectory $package_dir -Version $script:nuget_version -NonInteractive
 }
 
+task appveyor-install -depends gitversion
+
+task appveyor-build #TODO
+
+task appveyor-test -depends test, pack

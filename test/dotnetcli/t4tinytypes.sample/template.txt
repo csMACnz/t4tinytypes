@@ -1,8 +1,0 @@
-﻿Value Types Generated:
-* TinyString
-* TinyInt
-* TinyComparableInt
-* TinyDouble
-* TinyDecimal
-* TinyChar
-* TinyBool

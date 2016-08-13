@@ -34,7 +34,8 @@ task dotnettest {
 }
 
 task vstest {
-#TODO
+    #TODO
+    msbuild $base_dir/test/visualstudio/t4tinytypes.sample.sln
 }
 
 task pack -depends gitversion {

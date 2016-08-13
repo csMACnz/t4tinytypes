@@ -1,6 +1,6 @@
 <#@ assembly name="EnvDTE"
 #><#@ import namespace="Microsoft.VisualStudio.TextTemplating"
-#><#@ include file="valuetypegeneration.ttinclude" 
+#><#@ include file="tinytypes.ttinclude" 
 #><#+
 
 public Scope CreateVSScope()

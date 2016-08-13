@@ -1,0 +1,15 @@
+<#@ include file="../../../src/t4tinytypes/tinytypesvs.ttinclude"
+#><#
+using(var scope = CreateVSScope())
+{
+    scope.Generate(NewValueType("TinyString", String));
+    scope.Generate(NewValueType("TinyInt", Int));
+    var comparableInt = NewValueType("TinyComparableInt", Int);
+    comparableInt.Comparable = true;
+    scope.Generate(comparableInt);
+    scope.Generate(NewValueType("TinyDouble", Double));
+    scope.Generate(NewValueType("TinyDecimal", Decimal));
+    scope.Generate(NewValueType("TinyChar", Char));
+    scope.Generate(NewValueType("TinyBool", Bool));
+}
+#>

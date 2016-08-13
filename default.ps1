@@ -34,7 +34,6 @@ task dotnettest {
 }
 
 task vstest {
-    #TODO
     msbuild $base_dir/test/visualstudio/t4tinytypes.sample.sln
 }
 

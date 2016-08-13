@@ -20,12 +20,12 @@ task gitversion {
 task test -depends dotnettest, vstest
 
 task dotnettest {
-    cd test/dotnetcli
+    cd $base_dir/test/dotnetcli
     dotnet restore
 
     # run first because bug: https://github.com/dotnet/cli/issues/3807
     {
-        cd t4tinytypes.sample
+        cd $base_dir/test/dotnetcli/t4tinytypes.sample
         ./generateCode.cmd
     }
     dotnet build t4tinytypes.sample
@@ -44,7 +44,7 @@ task pack -depends gitversion {
     }
     mkdir $package_dir
 
-    cd src/t4tinytypes
+    cd $base_dir/src/t4tinytypes
     nuget pack -OutputDirectory $package_dir -Version $script:nuget_version -NonInteractive
 }
 

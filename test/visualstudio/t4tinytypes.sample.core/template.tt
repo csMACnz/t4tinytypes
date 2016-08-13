@@ -1,6 +1,6 @@
-<#@ include file="../../../src/t4tinytypes/tinytypes.ttinclude"
+<#@ include file="../../../src/t4tinytypes/tinytypesvs.ttinclude"
 #><#
-using(var scope = CreateScope())
+using(var scope = CreateVSScope())
 {
     scope.Generate(NewValueType("TinyString", String));
     scope.Generate(NewValueType("TinyInt", Int));

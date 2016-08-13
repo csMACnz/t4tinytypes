@@ -34,7 +34,7 @@ task dotnettest {
 }
 
 task vstest {
-    msbuild $base_dir/test/visualstudio/t4tinytypes.sample.sln
+    msbuild $base_dir/test/visualstudio/t4tinytypes.sample.sln /p:CustomAfterMicrosoftCommonTargets="C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v11.0\TextTemplating\Microsoft.TextTemplati‌​ng.targets" /p:TransformOnBuild=true
 }
 
 task pack -depends gitversion {

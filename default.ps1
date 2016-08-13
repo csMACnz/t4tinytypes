@@ -20,6 +20,7 @@ task gitversion {
 task test -depends dotnettest, vstest
 
 task dotnettest {
+    nuget install Mono.TextTransform -Version 1.0.0 -OutputDirectory BuildTools
     # run first because bug: https://github.com/dotnet/cli/issues/3807
     cd $base_dir/test/dotnetcli/t4tinytypes.sample
     ./generateCode.cmd

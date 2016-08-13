@@ -20,14 +20,13 @@ task gitversion {
 task test -depends dotnettest, vstest
 
 task dotnettest {
+    # run first because bug: https://github.com/dotnet/cli/issues/3807
+    cd $base_dir/test/dotnetcli/t4tinytypes.sample
+    ./generateCode.cmd
+
     cd $base_dir/test/dotnetcli
     dotnet restore
 
-    # run first because bug: https://github.com/dotnet/cli/issues/3807
-    {
-        cd $base_dir/test/dotnetcli/t4tinytypes.sample
-        ./generateCode.cmd
-    }
     dotnet build t4tinytypes.sample
 
     dotnet test t4tinytypes.sample.tests
